@@ -36,10 +36,10 @@ bot.on("message", async msg => {
   
   if (cmd == `${prefix}help`) {
    	let help = new Discord.RichEmbed()
-	.setTile("Help")
+	.setTitle("Help")
 	.addField("**.setgame**", "Sets the bots game (needs permission Manage Messages")
 	.setColor("#FF0000")
-	.setFooter("RiseSultions | www.risesolutions.tk", bot.user.displayAvatarURL)
+	.setFooter("RiseSolutions | www.risesolutions.tk", bot.user.displayAvatarURL)
 	.setTimestamp();
 
 	msg.channel.send(`Messages are on the way to your dms :ticket:`);
