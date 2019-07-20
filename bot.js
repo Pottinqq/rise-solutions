@@ -50,14 +50,14 @@ bot.on("message", async msg => {
   	const channel = bot.channels.get("name", "announcements");
     if (msg.member.hasPermission("MANAGE_MESSAGES")) {
     	let s = new Discord.RichEmbed()
-    	.setTitle(args)
+    	.setTitle('Announcement')
     	.setColor("#FF0000")
     	.addField(args)
     	.setFooter(`${msg.author.tag}`, bot.user.displayAvatarURL)
     	.setTimestamp();
       msg.delete();
-      channel.send("[ @here ]");
-      channel.send(s);
+      channel.sendMessage("[ @here ]");
+      channel.sendMessage(s);
     }
     if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
       msg.delete();
