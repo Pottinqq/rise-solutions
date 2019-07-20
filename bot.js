@@ -14,15 +14,12 @@ bot.on("message", async msg => {
   let bicon = bot.user.displayAvatarURL;
   let messageArray = msg.content.split(" ");
   let cmd = messageArray[0];
-  let args = messageArray.slice(1);
-  let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if(commandfile) commandfile.run(bot, msg, args);
+  let args = messageArray.slice(1).join(' ');
 
   if (cmd.startsWith(prefix + "setgame")) {
-    var text = messageArray.slice(1).join(' ');
     if (msg.member.hasPermission("MANAGE_MESSAGES")) {
       msg.delete();
-      bot.user.setActivity(text);
+      bot.user.setActivity(args);
     }
     if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
       msg.delete();
