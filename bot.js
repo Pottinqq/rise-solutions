@@ -52,7 +52,7 @@ bot.on("message", async msg => {
     	let s = new Discord.RichEmbed()
     	.setTitle('Announcement')
     	.setColor("#FF0000")
-    	.addField(args)
+    	.addField(args, "")
     	.setFooter(`${msg.author.tag}`, bot.user.displayAvatarURL)
     	.setTimestamp();
       msg.delete();
