@@ -1,23 +1,5 @@
 const Discord = require("discord.js");
-const fs = require("fs");
-const bot = new Discord.Client({disableEveryone: true});
-bot.commands = new Discord.Collection();
-
-fs.readdir("./commands/", (err, files) => {
-
-  if(err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js");
-  if(jsfile.length <= 0){
-    console.log("Couldn't find commands.");
-    return;
-  }
-
-  jsfile.forEach((f, i) =>{
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
-  });
-});
+const bot = new Discord.Client();
 
 bot.on("ready", async () => {
   console.log(`Logged in as ${bot.user.tag} and is in ${bot.guilds.size} servers!`);
@@ -34,7 +16,7 @@ bot.on("message", async msg => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if(commandfile) commandfile.run(bot,msg,args);
+  if(commandfile) commandfile.run(bot, msg, args);
 
   if (cmd.startsWith(prefix + "setgame")) {
     var text = messageArray.slice(1).join(' ');
@@ -53,6 +35,18 @@ bot.on("message", async msg => {
 
           msg.author.send(nopermembed);
     }
+  }
+  
+  if (cmd == `${prefix}help`) {
+    let help = new Discord.RichEmbed()
+	    .setTile("Help")
+	    .addField("**.setgame**", "Sets the bots game (needs permission Manage Messages")
+	    .setColor("#FF0000")
+	    .setFooter("RiseSultions | www.risesolutions.tk", bot.user.displayAvatarURL)
+	    .setTimestamp();
+
+	  msg.channel.send(`Messages are on the way to your dms :ticket:`);
+	  msg.author.send(help);
   }
 });
 
