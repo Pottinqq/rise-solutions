@@ -35,15 +35,15 @@ bot.on("message", async msg => {
   }
 
   if (cmd == `${prefix}help`) {
-   	let help = new Discord.RichEmbed()
-	.setTitle("Help")
-	.addField("**.setgame**", "Sets the bots game")
-	.setColor("#FF0000")
-	.setFooter("RiseSolutions | www.risesolutions.tk", bot.user.displayAvatarURL)
-	.setTimestamp();
+   	let helps = new Discord.RichEmbed()
+		.setTitle("Help")
+		.addField("**.setgame**", "Sets the bots game")
+		.setColor("#FF0000")
+		.setFooter("RiseSolutions | www.risesolutions.tk", bot.user.displayAvatarURL)
+		.setTimestamp();
 
 	msg.channel.send(`Messages are on the way to your dms :ticket:`);
-	msg.author.send(help);
+	msg.author.send(helps);
   }
 
   if (cmd.startsWith(prefix + "s")) {
