@@ -47,7 +47,7 @@ bot.on("message", async msg => {
   }
 
   if (cmd.startsWith(prefix + "s")) {
-  	const channel = bot.channels.get("name", "announcements");
+  	let channel = msg.guild.channels.find('name', 'announcements');
     if (msg.member.hasPermission("MANAGE_MESSAGES")) {
     	let s = new Discord.RichEmbed()
     	.setTitle('Announcement')
@@ -56,8 +56,8 @@ bot.on("message", async msg => {
     	.setFooter(`${msg.author.tag}`, bot.user.displayAvatarURL)
     	.setTimestamp();
       msg.delete();
-      channel.sendMessage("[ @here ]");
-      channel.sendMessage(s);
+      channel.send("[ @here ]");
+      channel.send(s);
     }
     if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
       msg.delete();
