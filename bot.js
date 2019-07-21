@@ -16,25 +16,7 @@ bot.on("message", async msg => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1).join(' ');
 
-  //if (cmd.startsWith(prefix + "setgame")) {
-    //if (msg.member.hasPermission("MANAGE_MESSAGES")) {
-    // msg.delete();
-    //  bot.user.setActivity(args);
-    //}
-    //if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
-     // msg.delete();
-     // let nopermembed = new Discord.RichEmbed()
-     //     .setTitle("No Permission")
-     //     .addField("You don't have permission", "you don't have the permission to perform that command.")
-     //     .setColor("#FF0000")
-     //     .setFooter("RiseSolutions#2662", bicon)
-     //     .setTimestamp();
-
-       //   msg.author.send(nopermembed);
-    //}
-  //}
-
-  if (cmd == `${prefix}help`) {
+  if (msg.content == `${prefix}help`) {
    	let helps = new Discord.RichEmbed()
 		.setTitle("Help")
 		.addField("**.setgame**", "Sets the bots game")
@@ -46,13 +28,13 @@ bot.on("message", async msg => {
 	msg.author.send(helps);
   }
 
-  if (cmd.startsWith(prefix + "s")) {
+  if (msg.content.startsWith(prefix + "s")) {
   	let channel = msg.guild.channels.find('name', 'announcements');
     if (msg.member.hasPermission("MANAGE_MESSAGES")) {
     	let s = new Discord.RichEmbed()
     	.setTitle('Announcement')
     	.setColor("#FF0000")
-    	.addField(args, "https://risesolutions.tk/index.php")
+    	.addField(args, "https://risesolutions.ga/index.php")
     	.setFooter(`${msg.author.tag}`, bicon)
     	.setTimestamp();
       msg.delete();
@@ -72,7 +54,7 @@ bot.on("message", async msg => {
     }
   }
 
-  if (cmd.startsWith(prefix + "rules")) {
+  if (msg.content.startsWith(prefix + "rules")) {
     if (!args[0]) return msg.channel.send("Please specify your rules message.");
     if (msg.member.hasPermission("MANAGE_GUILD")) {
       msg.delete();
@@ -86,11 +68,11 @@ bot.on("message", async msg => {
       channel.send(rules);
     }
 
-  if (cmd == `${prefix}verify`) {
+  if (msg.content == `${prefix}verify`) {
     var role = msg.guild.roles.find(role => role.name === "[Verified]");
     msg.member.addRole(role);
     msg.channel.send(`You have been verified`);
-  }
+    }
 });
 
 bot.login(process.env.BOT_TOKEN);
