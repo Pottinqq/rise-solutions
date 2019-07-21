@@ -73,39 +73,23 @@ bot.on("message", async msg => {
   }
 
   if (cmd.startsWith(prefix + "rules")) {
-    let role = msg.guild.roles.find(role => role.name === "[Owner]");
     if (!args[0]) return msg.channel.send("Please specify your rules message.");
-    if (msg.member.roles.some(role)) {
+    if (msg.member.hasPermission("MANAGE_GUILD")) {
       msg.delete();
       let channel = msg.guild.channels.find('name', 'discord-rules');
       let rules = new Discord.RichEmbed()
-      .setTitle("Rules")
-      .setColor("#FF0000")
-      .addField(args, "Please stick to these rules if you can.")
-      .setFooter(` ${msg.author.tag} | RiseSolutions | www.risesolutions.ga`, bicon)
-      .setTimestamp();
-      channel.send(rules);
-    } else {
-      msg.delete();
-      let nopermembed = new Discord.RichEmbed()
-        .setTitle("No Permission")
-        .addField("You don't have permission", "you don't have the permission to perform that command.")
+        .setTitle("Rules")
         .setColor("#FF0000")
-        .setFooter("RiseSolutions#2662", bicon)
+        .addField(args, "Please stick to these rules if you can.")
+        .setFooter(` ${msg.author.tag} | RiseSolutions | www.risesolutions.ga`, bicon)
         .setTimestamp();
-
-      msg.author.send(nopermembed);
+      channel.send(rules);
     }
-  }
 
-  if (msg.content == ".verify") {
+  if (cmd == `${prefix}verify`) {
     var role = msg.guild.roles.find(role => role.name === "[Verified]");
-    if (!msg.member.hasRole(role)) {
-      msg.member.addRole(role);
-      msg.channel.send(`You have been verified`);
-    } else {
-      msg.channel.send(`Your verified role has allready been put on your account.`);
-    }
+    msg.member.addRole(role);
+    msg.channel.send(`You have been verified`);
   }
 });
 
