@@ -25,7 +25,7 @@ bot.on("message", async msg => {
       msg.delete();
       let nopermembed = new Discord.RichEmbed()
           .setTitle("No Permission")
-          .addField("You don't have permission", "you need the permission MANAGE_MESSAGES")
+          .addField("You don't have permission", "you don't have the permission to perform that command.")
           .setColor("#FF0000")
           .setFooter("RiseSolutions#2662", bicon)
           .setTimestamp();
@@ -39,7 +39,7 @@ bot.on("message", async msg => {
 		.setTitle("Help")
 		.addField("**.setgame**", "Sets the bots game")
 		.setColor("#FF0000")
-		.setFooter("RiseSolutions | www.risesolutions.tk", bot.user.displayAvatarURL)
+		.setFooter("RiseSolutions | www.risesolutions.ga", bot.user.displayAvatarURL)
 		.setTimestamp();
 
 	msg.channel.send(`Messages are on the way to your dms :ticket:`);
@@ -53,7 +53,7 @@ bot.on("message", async msg => {
     	.setTitle('Announcement')
     	.setColor("#FF0000")
     	.addField(args, "https://risesolutions.tk/index.php")
-    	.setFooter(`${msg.author.tag}`, bot.user.displayAvatarURL)
+    	.setFooter(`${msg.author.tag}`, bicon)
     	.setTimestamp();
       msg.delete();
       channel.send("[ @here ]");
@@ -63,12 +63,38 @@ bot.on("message", async msg => {
       msg.delete();
       let nopermembed = new Discord.RichEmbed()
           .setTitle("No Permission")
-          .addField("You don't have permission", "you need the permission MANAGE_MESSAGES")
+        .addField("You don't have permission", "you don't have the permission to perform that command.")
           .setColor("#FF0000")
           .setFooter("RiseSolutions#2662", bicon)
           .setTimestamp();
 
           msg.author.send(nopermembed);
+    }
+  }
+
+  if (cmd.startsWith(prefix + "rules")) {
+    let role = msg.guild.roles.find(role => role.name === "[Owner]");
+    if (!args[0]) return msg.channel.send("Please specify your rules message.");
+    if (msg.member.roles.some(role)) {
+      msg.delete();
+      let channel = msg.guild.channels.find('name', 'discord-rules');
+      let rules = new Discord.RichEmbed()
+      .setTitle("Rules")
+      .setColor("#FF0000")
+      .addField(args, "Please stick to these rules if you can.")
+      .setFooter(` ${msg.author.tag} | RiseSolutions | www.risesolutions.ga`, bicon)
+      .setTimestamp();
+      channel.send(rules);
+    } else {
+      msg.delete();
+      let nopermembed = new Discord.RichEmbed()
+        .setTitle("No Permission")
+        .addField("You don't have permission", "you don't have the permission to perform that command.")
+        .setColor("#FF0000")
+        .setFooter("RiseSolutions#2662", bicon)
+        .setTimestamp();
+
+      msg.author.send(nopermembed);
     }
   }
 
