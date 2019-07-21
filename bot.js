@@ -71,6 +71,16 @@ bot.on("message", async msg => {
           msg.author.send(nopermembed);
     }
   }
+
+  if (msg.content == ".verify") {
+    var role = msg.guild.roles.find(role => role.name === "[Verified]");
+    if (!msg.member.hasRole(role)) {
+      msg.member.addRole(role);
+      msg.channel.send(`You have been verified`);
+    } else {
+      msg.channel.send(`Your verified role has allready been put on your account.`);
+    }
+  }
 });
 
 bot.login(process.env.BOT_TOKEN);
