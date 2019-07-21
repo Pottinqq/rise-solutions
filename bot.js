@@ -16,23 +16,23 @@ bot.on("message", async msg => {
   let cmd = messageArray[0];
   let args = messageArray.slice(1).join(' ');
 
-  if (cmd.startsWith(prefix + "setgame")) {
-    if (msg.member.hasPermission("MANAGE_MESSAGES")) {
-      msg.delete();
-      bot.user.setActivity(args);
-    }
-    if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
-      msg.delete();
-      let nopermembed = new Discord.RichEmbed()
-          .setTitle("No Permission")
-          .addField("You don't have permission", "you don't have the permission to perform that command.")
-          .setColor("#FF0000")
-          .setFooter("RiseSolutions#2662", bicon)
-          .setTimestamp();
+  //if (cmd.startsWith(prefix + "setgame")) {
+    //if (msg.member.hasPermission("MANAGE_MESSAGES")) {
+    // msg.delete();
+    //  bot.user.setActivity(args);
+    //}
+    //if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
+     // msg.delete();
+     // let nopermembed = new Discord.RichEmbed()
+     //     .setTitle("No Permission")
+     //     .addField("You don't have permission", "you don't have the permission to perform that command.")
+     //     .setColor("#FF0000")
+     //     .setFooter("RiseSolutions#2662", bicon)
+     //     .setTimestamp();
 
-          msg.author.send(nopermembed);
-    }
-  }
+       //   msg.author.send(nopermembed);
+    //}
+  //}
 
   if (cmd == `${prefix}help`) {
    	let helps = new Discord.RichEmbed()
