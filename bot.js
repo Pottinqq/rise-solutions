@@ -44,13 +44,13 @@ bot.on("message", async msg => {
     if (!msg.member.hasPermission("MANAGE_MESSAGES")) {
       msg.delete();
       let nopermembed = new Discord.RichEmbed()
-          .setTitle("No Permission")
+        .setTitle("No Permission")
         .addField("You don't have permission", "you don't have the permission to perform that command.")
-          .setColor("#FF0000")
-          .setFooter("RiseSolutions#2662", bicon)
-          .setTimestamp();
+        .setColor("#FF0000")
+        .setFooter("RiseSolutions#2662", bicon)
+        .setTimestamp();
 
-          msg.author.send(nopermembed);
+        msg.author.send(nopermembed);
     }
   }
 
@@ -65,8 +65,9 @@ bot.on("message", async msg => {
         .addField(args, "Please stick to these rules if you can.")
         .setFooter(` ${msg.author.tag} | RiseSolutions | www.risesolutions.ga`, bicon)
         .setTimestamp();
-      channel.send(rules);
+     channel.send(rules);
     }
+  }
 });
 
 bot.login(process.env.BOT_TOKEN);
