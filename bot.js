@@ -28,7 +28,7 @@ bot.on("message", async msg => {
 	msg.author.send(helps);
   }
 
-  if (msg.content.startsWith(prefix + "s")) {
+  if (msg.content.startsWith(prefix + "announce")) {
   	let channel = msg.guild.channels.find('name', 'announcements');
     if (msg.member.hasPermission("MANAGE_MESSAGES")) {
     	let s = new Discord.RichEmbed()
