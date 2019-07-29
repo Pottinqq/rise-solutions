@@ -67,12 +67,6 @@ bot.on("message", async msg => {
         .setTimestamp();
       channel.send(rules);
     }
-
-  if (msg.content == `${prefix}verify`) {
-    var role = msg.guild.roles.find(role => role.name === "[Verified]");
-    msg.member.addRole(role);
-    msg.channel.send(`You have been verified`);
-    }
 });
 
 bot.login(process.env.BOT_TOKEN);
