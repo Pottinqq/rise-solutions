@@ -58,7 +58,7 @@ bot.on("message", async msg => {
     if (!args[0]) return msg.channel.send("Please specify your rules message.");
     if (msg.member.hasPermission("MANAGE_GUILD")) {
       msg.delete();
-      let channel = msg.guild.channels.find('name', 'discord-rules');
+      let channel = msg.guild.channels.find('name', 'rules');
       let rules = new Discord.RichEmbed()
         .setTitle("Rules")
         .setColor("#FF0000")
