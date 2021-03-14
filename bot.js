@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 
 bot.on("ready", async () => {
   console.log(`Logged in as ${bot.user.tag} and is in ${bot.guilds.size} servers!`);
-  bot.user.setActivity(".help | RiseSolutions™");
+  bot.user.setActivity(".help | RiseSolutions");
 });
 
 bot.on("message", async msg => {
@@ -21,7 +21,7 @@ bot.on("message", async msg => {
 		.setTitle("Help")
 		.addField("**.setgame**", "Sets the bots game")
 		.setColor("#FF0000")
-		.setFooter("RiseSolutions | www.risesolutions.ga", bot.user.displayAvatarURL)
+		.setFooter("RiseSolutions", bot.user.displayAvatarURL)
 		.setTimestamp();
 
 	msg.channel.send(`Messages are on the way to your dms :ticket:`);
@@ -34,7 +34,7 @@ bot.on("message", async msg => {
     	let s = new Discord.RichEmbed()
     	.setTitle('Announcement')
     	.setColor("#FF0000")
-    	.addField(args, "https://risesolutions.ga/index.php")
+    	.setDescription(args)
     	.setFooter(`${msg.author.tag}`, bicon)
     	.setTimestamp();
       msg.delete();
@@ -45,9 +45,9 @@ bot.on("message", async msg => {
       msg.delete();
       let nopermembed = new Discord.RichEmbed()
         .setTitle("No Permission")
-        .addField("You don't have permission", "you don't have the permission to perform that command.")
+        .addField("You don't have permission", "You don't have the permission to perform that command.")
         .setColor("#FF0000")
-        .setFooter("RiseSolutions#2662", bicon)
+        .setFooter("RiseSolutions", bicon)
         .setTimestamp();
 
         msg.author.send(nopermembed);
@@ -63,7 +63,7 @@ bot.on("message", async msg => {
         .setTitle("Rules")
         .setColor("#FF0000")
         .addField(args, "Please stick to these rules if you can.")
-        .setFooter(` ${msg.author.tag} | RiseSolutions | www.risesolutions.ga`, bicon)
+        .setFooter(`${msg.author.tag} | RiseSolutions`, bicon)
         .setTimestamp();
      channel.send(rules);
     }
